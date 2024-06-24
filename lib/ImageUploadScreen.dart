@@ -15,7 +15,7 @@ class _RecognizerScreenState extends State<RecognizerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color.fromARGB(255, 250, 175, 200),title: Text('Clicked/Uploaded Image'),),
+      appBar: AppBar(backgroundColor: Color.fromRGBO(254, 244, 230, 1),title: Text('Clicked/Uploaded Image'),),
       body: Container(
         child: Image.file((this.widget.image),),
       ),

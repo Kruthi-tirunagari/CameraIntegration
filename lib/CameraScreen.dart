@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:p_africa_testhardcode/ImageUploadScreen.dart';
 
@@ -67,13 +68,25 @@ class _CamerascreenState extends State<Camerascreen> with WidgetsBindingObserver
     }
   }
 
+  MaterialStateProperty<Color> getColor(Color color, Color colorPressed){
+  final getColor = (Set<MaterialState> states){
+    if(states.contains(MaterialState.pressed)){
+      return colorPressed;
+    }else {
+      return color;
+    }
+  };
+  return MaterialStateProperty.resolveWith(getColor);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Receipts'),
+        titleTextStyle: TextStyle(color: Color.fromRGBO(131, 20, 65, 1), fontSize: 25),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 255, 218, 247),
+        backgroundColor: Color.fromRGBO(254, 244, 230, 1),
       ),
       body: Column(
         children: [
@@ -86,7 +99,15 @@ class _CamerascreenState extends State<Camerascreen> with WidgetsBindingObserver
                   onPressed: () async {
                     await _takePicture();
                   },
-                  child: Text('Capture'),
+                  style: ButtonStyle(
+                    foregroundColor: getColor(Color.fromRGBO(131, 20, 65, 1), Color.fromRGBO(254, 244, 230, 1)),
+                    backgroundColor: getColor(Color.fromRGBO(254, 244, 230, 1), Color.fromRGBO(131, 20, 65, 1)),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      BorderSide(color: Color.fromRGBO(131, 20, 65, 1))
+                    ),
+                  ),
+                  child: Text('Capture',
+                  style: TextStyle(fontSize: 14)),
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -100,13 +121,29 @@ class _CamerascreenState extends State<Camerascreen> with WidgetsBindingObserver
                       });
                     }
                   },
-                  child: Text('Upload'),
+                  style: ButtonStyle(
+                    foregroundColor: getColor(Color.fromRGBO(131, 20, 65, 1), Color.fromRGBO(254, 244, 230, 1)),
+                    backgroundColor: getColor(Color.fromRGBO(254, 244, 230, 1), Color.fromRGBO(131, 20, 65, 1)),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      BorderSide(color: Color.fromRGBO(131, 20, 65, 1))
+                    ),
+                  ),
+                  child: Text('Upload',
+                  style: TextStyle(fontSize: 14)),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     //placeholder
                   },
-                  child: Text('History'),
+                  style: ButtonStyle(
+                    foregroundColor: getColor(Color.fromRGBO(131, 20, 65, 1), Color.fromRGBO(254, 244, 230, 1)),
+                    backgroundColor: getColor(Color.fromRGBO(254, 244, 230, 1), Color.fromRGBO(131, 20, 65, 1)),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      BorderSide(color: Color.fromRGBO(131, 20, 65, 1))
+                    ),
+                  ),
+                  child: Text('History',
+                  style: TextStyle(fontSize: 14)),
                 ),
               ],
             ),
@@ -117,11 +154,11 @@ class _CamerascreenState extends State<Camerascreen> with WidgetsBindingObserver
                 : CameraPreview(_cameraController!),
           ),
           Container(
-            color: Color.fromARGB(255, 247, 203, 217),
+            color: Color.fromRGBO(254, 244, 230, 1),
             height: 100,
             child: Center(
               child: IconButton(
-                icon: Icon(Icons.camera_alt, size: 50),
+                icon: Icon(Icons.camera_alt, size: 50, color: Color.fromRGBO(131, 20, 65, 1)),
                 onPressed: () async {
                   await _takePicture();
                 },
